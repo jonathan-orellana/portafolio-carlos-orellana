@@ -1,35 +1,34 @@
 /* ============================================================
    Carlos Orellana — portfolio
-   Mobile menu toggle · terminal typing effect · mailto
    ============================================================ */
 
 (function () {
-  'use strict';
+  "use strict";
 
   /* ---------- Mobile menu toggle ---------- */
-  var toggle = document.getElementById('navToggle');
-  var menu = document.getElementById('mobileMenu');
+  var toggle = document.getElementById("navToggle");
+  var menu = document.getElementById("mobileMenu");
 
   if (toggle && menu) {
-    toggle.addEventListener('click', function () {
+    toggle.addEventListener("click", function () {
       var open = menu.hidden;
       menu.hidden = !open;
-      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute("aria-expanded", String(open));
     });
     // close the menu after tapping a link
-    menu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
+    menu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
         menu.hidden = true;
-        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute("aria-expanded", "false");
       });
     });
   }
 
   /* ---------- mailto (kept lightly obfuscated) ---------- */
-  var emailBtn = document.getElementById('emailBtn');
+  var emailBtn = document.getElementById("emailBtn");
   if (emailBtn) {
-    var address = ['carlosorellana200', 'outlook.com'].join('@');
-    emailBtn.setAttribute('href', 'mailto:' + address);
+    var address = ["carlosorellana200", "outlook.com"].join("@");
+    emailBtn.setAttribute("href", "mailto:" + address);
   }
 
   /* ---------- Terminal typing effect ---------- */
@@ -45,12 +44,21 @@
       if (!deleting) {
         pos++;
         el.textContent = full.slice(0, pos);
-        if (pos >= full.length) { deleting = true; setTimeout(tick, 1500); return; }
+        if (pos >= full.length) {
+          deleting = true;
+          setTimeout(tick, 1500);
+          return;
+        }
         setTimeout(tick, 75 + Math.random() * 55);
       } else {
         pos--;
         el.textContent = full.slice(0, pos);
-        if (pos <= 0) { deleting = false; ci = (ci + 1) % cmds.length; setTimeout(tick, 320); return; }
+        if (pos <= 0) {
+          deleting = false;
+          ci = (ci + 1) % cmds.length;
+          setTimeout(tick, 320);
+          return;
+        }
         setTimeout(tick, 38);
       }
     }
@@ -58,13 +66,24 @@
   }
 
   typeLoop(
-    document.getElementById('heroType'),
-    ['./open-to-new-grad-roles', './currently-building', './always-learning', './say-hello'],
-    1600
+    document.getElementById("heroType"),
+    [
+      "./open-to-new-grad-roles",
+      "./currently-building",
+      "./always-learning",
+      "./say-hello",
+    ],
+    1600,
   );
   typeLoop(
-    document.getElementById('contactType'),
-    ['./say-hello', './send-an-email', './check-my-linkedin', './open-my-github', './have-a-question?'],
-    2200
+    document.getElementById("contactType"),
+    [
+      "./say-hello",
+      "./send-an-email",
+      "./check-my-linkedin",
+      "./open-my-github",
+      "./have-a-question?",
+    ],
+    2200,
   );
 })();
